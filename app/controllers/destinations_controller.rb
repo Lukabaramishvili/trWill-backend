@@ -15,8 +15,8 @@ class DestinationsController < ApplicationController
   def book
     # byebug
     @destination = Destination.find(params[:id])
-    Trip.create(destination: @destination, user: @user)
-    render json: @destination
+    @trip = Trip.create(destination: @destination, user: @user)
+    render json: @trip
   end
 
 

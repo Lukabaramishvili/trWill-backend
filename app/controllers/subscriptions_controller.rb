@@ -30,7 +30,7 @@ class SubscriptionsController < ApplicationController
   # end
 
   # def destroy
-  #   @subscription = @subscription.find(params[:id])
+  #   @subscription = Subscription.find(params[:id])
   #   @subscription.destroy
   # end
 

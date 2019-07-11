@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
 
   skip_before_action :authorized, only: [:create, :index, :show]
-  
+
   def index
     @trips = Trip.all
     render json: @trips
@@ -19,6 +19,12 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     render json: @trip
+  end
+
+  def destroy
+    # byebug
+    @trip = Trip.find(params[:id])
+    @trip.destroy
   end
 
   private

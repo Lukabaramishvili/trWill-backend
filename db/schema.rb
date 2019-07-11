@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_190759) do
+ActiveRecord::Schema.define(version: 2019_07_08_140939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "destination_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_comments_on_destination_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "destinations", force: :cascade do |t|
     t.integer "price"
@@ -23,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_07_02_190759) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -52,6 +69,8 @@ ActiveRecord::Schema.define(version: 2019_07_02_190759) do
     t.index ["subscription_id"], name: "index_users_on_subscription_id"
   end
 
+  add_foreign_key "comments", "destinations"
+  add_foreign_key "comments", "users"
   add_foreign_key "trips", "destinations"
   add_foreign_key "trips", "users"
   add_foreign_key "users", "subscriptions"
