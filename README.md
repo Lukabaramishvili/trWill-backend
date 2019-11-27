@@ -3,6 +3,8 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+For details see Front-end repo : (https://github.com/Lukabaramishvili/trwill-frontend)
+
 Things you may want to cover:
 
 * Ruby version
